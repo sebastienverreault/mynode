@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /opt/mynode/pyblock/pyblock_venv/bin/activate
+python /opt/mynode/pyblock/PyBlock.py
+deactivate

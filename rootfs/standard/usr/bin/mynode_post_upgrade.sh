@@ -56,6 +56,8 @@ $TORIFY apt-get -y install libatlas-base-dev libffi-dev libssl-dev glances pytho
 $TORIFY apt-get -y -qq install apt-transport-https ca-certificates
 $TORIFY apt-get -y install libgmp-dev automake libtool libltdl-dev libltdl7
 $TORIFY apt-get -y install xorg chromium openbox lightdm openjdk-11-jre libevent-dev ncurses-dev
+$TORIFY apt-get -y install hexyl python-apt libglib2.0-dev libcairo2-dev libgirepository1.0-dev libxml2-dev
+$TORIFY apt-get -y install libxslt-dev libcurl4-openssl-dev
 
 # Make sure some software is removed
 apt-get -y purge ntp # (conflicts with systemd-timedatectl)
@@ -394,6 +396,40 @@ if [ "$CURRENT" != "$LNDCONNECT_UPGRADE_URL" ]; then
     mkdir -p /home/bitcoin/.mynode/
     chown -R bitcoin:bitcoin /home/bitcoin/.mynode/
     echo $LNDCONNECT_UPGRADE_URL > $LNDCONNECT_UPGRADE_URL_FILE
+fi
+
+
+# Install PyBlock
+PYBLOCK_UPGRADE_URL=https://github.com/curly60e/pyblock/archive/e83228a5dad4fc4777dd54c58b7cd4412fdd10e3.zip
+PYBLOCK_UPGRADE_URL_FILE=/home/bitcoin/.mynode/.pyblock_url
+CURRENT=""
+if [ -f $PYBLOCK_UPGRADE_URL_FILE ]; then
+    CURRENT=$(cat $PYBLOCK_UPGRADE_URL_FILE)
+fi
+if [ "$CURRENT" != "$PYBLOCK_UPGRADE_URL" ]; then
+    mkdir -p /opt/mynode
+    cd /opt/mynode
+
+    # Download and Extract
+    rm -rf pyblock/
+    wget $PYBLOCK_UPGRADE_URL -O pyblock.zip
+    unzip pyblock.zip
+    rm -f pyblock.zip
+    mv pyblock-* pyblock
+
+    # Install pyblock in venv
+    cd pyblock
+    virtualenv -p python3 pyblock_venv
+    source pyblock_venv/bin/activate
+
+    sed -i ''s/python-apt//g'' requirements.txt
+
+    pip3 install -r requirements.txt
+    deactivate
+
+    # Set permissions to admin
+    chown -R admin:admin /opt/mynode/pyblock
+    echo $PYBLOCK_UPGRADE_URL > $PYBLOCK_UPGRADE_URL_FILE
 fi
 
 
