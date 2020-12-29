@@ -525,7 +525,7 @@ echo $LNDCONNECT_VERSION > $LNDCONNECT_LATEST_VERSION_FILE
 chmod +x /usr/bin/electrs || true # Once, a device didn't have the execute bit set for electrs
 timedatectl set-ntp True || true # Make sure NTP is enabled for Tor and Bitcoin
 rm -f /var/swap || true # Remove old swap file to save SD card space
-systemctl enable check_in || true
+# systemctl enable check_in || true   # no fuckin' checkin
 
 
 # Check for new versions

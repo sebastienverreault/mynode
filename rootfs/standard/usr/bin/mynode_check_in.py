@@ -4,7 +4,7 @@ import requests
 import time
 import subprocess
 
-CHECKIN_URL = "https://www.mynodebtc.com/device_api/check_in.php"
+# CHECKIN_URL = "https://www.mynodebtc.com/device_api/check_in.php"     # no fuckin' checkin
 
 # Helper functions
 def unset_skipped_product_key():
@@ -49,6 +49,8 @@ def get_product_key():
 
 # Checkin every 24 hours
 def check_in():
+    os.system("printf \"%s | Check In Success: {} \\n\" \"$(date)\" >> /tmp/check_in_status".format("no fuckin' checkin"))
+    return True     # no fuckin' checkin
 
     # Check in
     product_key = get_product_key()
@@ -109,5 +111,5 @@ def check_in():
 # Run check in every 24 hours
 if __name__ == "__main__":
     while True:
-        check_in()
+        # check_in()            # no fuckin' checkin
         time.sleep(60*60*24)

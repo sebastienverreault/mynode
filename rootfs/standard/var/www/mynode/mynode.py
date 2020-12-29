@@ -530,8 +530,8 @@ def page_product_key():
 
             save_product_key(product_key)
 
-            t = Timer(10.0, check_in)
-            t.start()
+            # t = Timer(10.0, check_in)     # no fuckin' checkin
+            # t.start()
 
             return redirect("/")
 

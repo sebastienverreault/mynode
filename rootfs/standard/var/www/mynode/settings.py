@@ -330,7 +330,7 @@ def get_latest_version_page():
 @mynode_settings.route("/settings/check-in")
 def check_in_page():
     check_logged_in()
-    check_in()
+    # check_in()                    # no fuckin' checkin
     return redirect("/settings")
 
 @mynode_settings.route("/settings/reset-blockchain")

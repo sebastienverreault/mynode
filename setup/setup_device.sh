@@ -773,7 +773,7 @@ fi
 
 # Setup myNode Startup Script
 systemctl daemon-reload
-systemctl enable check_in
+# systemctl enable check_in     # no fuckin' checkin
 systemctl enable background
 systemctl enable docker
 systemctl enable mynode

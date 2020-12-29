@@ -155,4 +155,5 @@ def find_public_ip():
 
 # Updated: Check ins now happen in different process. This will just restart the service to force a new check in.
 def check_in():
-    os.system("systemctl restart check_in")
+    # os.system("systemctl restart check_in")   # no fuckin' checkin
+    pass

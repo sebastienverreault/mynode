@@ -697,7 +697,7 @@ rm -f /etc/update-motd.d/98-armbian-autoreboot-warn || true
 apt-get clean
 
 # Enable any new/required services
-systemctl enable check_in
+# systemctl enable check_in       # no fuckin' checkin
 systemctl enable background
 systemctl enable docker
 systemctl enable bitcoind

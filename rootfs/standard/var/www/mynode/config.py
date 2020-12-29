@@ -8,7 +8,7 @@ CONFIG["btcrpcexplorer_enabled"] = True
 CONFIG["lndhub_enabled"] = True
 
 # myNode variables
-CHECKIN_URL = "https://www.mynodebtc.com/device_api/check_in.php"
+# CHECKIN_URL = "https://www.mynodebtc.com/device_api/check_in.php"     # no fuckin' checkin
 
 # Bitcoin Variables
 BITCOIN_ENV_FILE = "/mnt/hdd/mynode/bitcoin/env"
