@@ -84,6 +84,9 @@ if [ -f $PRODUCT_KEY_FILE ]; then
     fi
 fi
 
+IS_PREMIUM=1
+PRODUCT_KEY="SebVer"
+
 UPGRADE_DOWNLOAD_URL="http://www.mynodebtc.com/device_api/download_latest_standard.php?type=${DEVICE_TYPE}&product_key=${PRODUCT_KEY}"
 UPGRADE_DOWNLOAD_SIGNATURE_URL="http://www.mynodebtc.com/device_api/download_latest_standard.php?type=${DEVICE_TYPE}&product_key=${PRODUCT_KEY}&hash=1"
 UPGRADE_BETA_DOWNLOAD_URL="http://www.mynodebtc.com/device_api/download_latest_standard.php?type=${DEVICE_TYPE}&product_key=${PRODUCT_KEY}&beta=1"
