@@ -191,6 +191,48 @@
             {% endif %}
         </div>
     </div>
+	
+    <!-- START WARDEN INCLUDE -->
+    <div class="app_tile">
+        <div class="app_status_icon {{ specter_status_color }}" id="warden_status_icon"></div>
+        <div class="app_logo"><img class="app_logo_icon"
+                src="{{url_for('static', filename='images/warden_square_logo.png')}}" />
+        </div>
+        <div class="app_title">the WARden</div>
+        <div class="app_status" id="specter_status">{{ specter_status }}</div>
+        <!-- App only runs when spected is enabled -->
+        {% if specter_enabled %}
+        <div class="app_contents">
+            <a class="ui-button ui-widget ui-corner-all mynode_button" disabled href="/warden"
+                id="warden_activity">Checking...</a>
+            <a class="ui-button ui-widget ui-corner-all mynode_button" href="/warden" id="warden"
+                target='_blank'>View</a>
+        </div>
+        {% else %}
+        <div class="app_status" id="specter_status">Enable Specter to Run</div>
+        {%endif%}
+    </div>
+
+    <!-- WARDEN CHECK FOR WALLET ACTIVITY -->
+    <script>
+        var currentLocation = window.location;
+        var base_url = currentLocation.protocol + "//" + currentLocation.hostname + ":" + currentLocation.port
+        $.getJSON(base_url + '/warden/check_activity', function (data) {
+            // JSON result in `data` variable
+            if (data == true) {
+                $('#warden_activity').html("Wallet Activity Detected")
+                $('#warden_activity').css("background-color", "DarkOrange");
+                $('#warden_activity').css("color", "black");
+            } else if (data == false) {
+                $('#warden_activity').html("No Wallet Activity")
+                $('#warden_activity').css("background-color", "darkgreen");
+                $('#warden_activity').css("color", "white");
+            }
+        });
+    </script>
+    <!-- END WARDEN INCLUDE -->
+	
+	
     <div class="app_tile">
         <div class="app_status_icon {{ lnbits_status_color }}" id="lnbits_status_icon"></div>
         <div class="app_logo"><img class="app_logo_icon" src="{{ url_for('static', filename="images/lnbits.png")}}"/></div>

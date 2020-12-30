@@ -1,4 +1,5 @@
-
+from warden.routes import warden
+from warden.warden import warden_metadata
 from config import *
 from flask import Flask, render_template, Markup, send_from_directory, redirect, request, url_for
 from user_management import *
@@ -81,6 +82,14 @@ app.register_blueprint(mynode_tor)
 app.register_blueprint(mynode_electrum_server)
 app.register_blueprint(mynode_vpn)
 app.register_blueprint(mynode_settings)
+# ----------------- WARden include code -----------------
+# Warden Import Routes & Blueprint
+app.register_blueprint(warden, url_prefix='/warden',
+                       static_folder='static',
+                       template_folder='templates',
+                       static_url_path='warden/static')
+# ----------------- End WARden include code -----------------
+
 
 ### Definitions
 MYNODE_DIR =    "/mnt/hdd/mynode"
